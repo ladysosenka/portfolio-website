@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<!--
+  PORTFOLIO — Monika Sosnowska
+  ============================
+  This one file is the whole website (plus the photo avatar.jpg). It has four parts:
+    1. <style>  — CSS: how the page LOOKS (colours, fonts, layout)
+    2. icons    — a hidden <svg> with small line icons, reused across the page
+    3. <body>   — HTML: what the page SAYS (all the text, in Polish and English)
+    4. <script> — JavaScript: what the page DOES (language switch, menu highlight)
+
+  DESIGN IDEA: Scandinavian, minimal, "hygge"
+  Warm linen background, espresso text, a cinnamon accent and soft sage icons.
+  Few boxes: structure comes from white space and thin lines.
+
+  PAGE LOGIC (what a recruiter needs, in order)
+  Who she is → what roles she wants → results in numbers → experience
+  → skills and tools → education → how to contact her.
+
+  HOW THE TWO LANGUAGES WORK
+  Every piece of text is written twice: once with lang="pl", once with lang="en".
+  CSS hides one of them. Clicking "PL" or "EN" just swaps which one is hidden.
+  To change a sentence, edit BOTH versions.
+-->
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <!-- Makes the page fit phone screens instead of showing a tiny desktop page -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monika Sosnowska Portfolio</title>
+  <!-- The description is what search engines show under the link; it carries the main keywords -->
+  <meta name="description" content="Monika Sosnowska, Operations Coordinator in Kraków. 6+ years in operations: process improvement, SOP development, documentation management, Excel reporting, onboarding and stakeholder management. Available now for hybrid or remote roles.">
+
+  <!-- Shown when the link is pasted into LinkedIn, Slack, Messenger etc. -->
+  <meta property="og:title" content="Monika Sosnowska · Operations Coordinator">
+  <meta property="og:description" content="6+ years in operations. Process improvement, SOPs, documentation, Excel reporting and onboarding. Available now for hybrid or remote roles.">
+  <meta property="og:type" content="profile">
+
+  <!-- Tab icon: the initials "MS" drawn as a tiny SVG image -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f2723'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f2ece3' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts: Fraunces (soft, warm serif for headings) and Figtree (clean text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       1. DESIGN TOKENS — named values reused everywhere below.
+       Change a value here and it changes on the whole page.
+       Layout idea: a calm "ID card" sidebar on the left, content on
+       the right, structured by white space and thin lines.
+       The page has one warm light look on purpose (no dark mode).
+       ============================================================ */
+    :root {
+      /* Colours */
+      --linen:    #f2ece3;   /* page background: linen */
+      --surface:  #fbf8f3;   /* sidebar, buttons: warm white */
+      --ink:      #2f2723;   /* main text: espresso */
+      --muted:    #74675d;   /* secondary text: dates, places */
+      --line:     #e1d6c8;   /* thin lines */
+      --cinnamon: #9c5a3c;   /* accent: links, numbers, company names */
+      --sage:     #5f6e58;   /* icons and small labels */
+      --oat:      #e9dfd1;   /* chip backgrounds */
+
+      /* Fonts */
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-body:    "Figtree", "Helvetica Neue", Arial, sans-serif;
+
+      /* Type scale: every text size on the page is one of these */
+      --text-xs:  0.8rem;    /* chips, labels */
+      --text-sm:  0.9rem;    /* dates, meta, captions */
+      --text-md:  1rem;      /* body text (17px) */
+      --text-lg:  1.2rem;    /* job titles */
+      --text-xl:  1.55rem;   /* the lead sentence */
+      --text-2xl: 2.1rem;    /* section titles, big numbers */
+      --text-name: 1.75rem;  /* the name: sized to fit on one line in the sidebar */
+
+      color-scheme: light;
+    }
+
+    /* ============================================================
+       2. LANGUAGE SWITCH — hide the language that is not chosen.
+       The <html> tag gets the class "show-en" when English is on.
+       ============================================================ */
+    html:not(.show-en) [lang="en"] { display: none !important; }
+    html.show-en [lang="pl"]       { display: none !important; }
+
+    /* ============================================================
+       3. BASE STYLES
+       ============================================================ */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body {
+      margin: 0;
+      background: var(--linen);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { margin: 0; text-wrap: balance; }
+    h1, h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; }
+    h2 { font-size: var(--text-2xl); line-height: 1.1; }
+    h3 { font-size: var(--text-md); font-weight: 600; line-height: 1.35; }
+    p  { margin: 0; text-wrap: pretty; }
+    ul { margin: 0; padding-left: 1.1rem; }
+    a  { color: var(--cinnamon); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    img { max-width: 100%; display: block; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--cinnamon); outline-offset: 3px; border-radius: 6px;
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* Icons: thin line drawings that take the colour of the text around them */
+    .icon {
+      width: 18px; height: 18px; flex: none;
+      fill: none; stroke: currentColor; stroke-width: 1.6;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* Small uppercase label, e.g. "KONTAKT" */
+    .label {
+      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 10px;
+    }
+
+    /* Chips: small rounded labels for tools and roles */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
+    .chips li { background: var(--oat); color: var(--ink); font-size: var(--text-xs); padding: 3px 11px; border-radius: 999px; }
+
+    /* ============================================================
+       4. PAGE LAYOUT — sidebar on the left; on the right a column with
+       the menu bar on top and the content below. The menu bar only
+       spans the right column, so the photo and the buttons start at
+       the same height. On phones everything stacks into one column.
+       ============================================================ */
+    .page {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 72px;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (max-width: 960px) { .page { gap: 48px; } }
+    /* minmax(0, 1fr) lets the column shrink to the phone's width, so nothing sticks out sideways */
+    @media (max-width: 860px) { .page { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 0 16px; } }
+    .content, .sidebar, .sidebar > * { min-width: 0; }
+
+    /* ---------- Sidebar ("ID card") ---------- */
+    /* padding-top matches the menu bar's, so photo and buttons line up */
+    .sidebar { align-self: start; display: flex; flex-direction: column; gap: 28px; padding-top: 16px; }
+    /* On tall, wide screens the sidebar stays in view while scrolling */
+    @media (min-width: 861px) and (min-height: 960px) { .sidebar { position: sticky; top: 0; } }
+
+    /* ============================================================
+       5. MENU BAR — section buttons, then Contact and the language
+       switch on the right. Sticks to the top of the right column.
+       ============================================================ */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 0 14px;
+      margin-bottom: 40px;
+      background: color-mix(in srgb, var(--linen) 92%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    /* The section buttons scroll sideways on phones instead of wrapping */
+    .menu { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a, .contact-button {
+      display: inline-flex; align-items: center; gap: 6px; flex: none;
+      padding: 8px 12px; border-radius: 999px; border: 1px solid transparent;
+      color: var(--ink); text-decoration: none; font-size: var(--text-sm); font-weight: 500;
+      white-space: nowrap;
+      transition: background-color 150ms, color 150ms, border-color 150ms;
+    }
+    .menu a .icon { width: 16px; height: 16px; color: var(--sage); }
+    .menu a:hover { background: var(--surface); border-color: var(--line); }
+    /* The button of the section you are reading now (set by the JavaScript) */
+    .menu a[aria-current="true"] { background: var(--ink); color: var(--surface); }
+    .menu a[aria-current="true"] .icon { color: var(--surface); }
+
+    .topbar-right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; padding-left: 8px; }
+    .contact-button { background: var(--cinnamon); color: var(--surface); }
+    .contact-button:hover { background: var(--ink); }
+
+    .lang-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+    .lang-switch button {
+      border: 0; background: transparent; color: var(--muted); cursor: pointer;
+      font: 600 var(--text-xs) var(--font-body); letter-spacing: 0.05em; padding: 5px 12px; border-radius: 999px;
+    }
+    .lang-switch button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+
+    @media (max-width: 700px) {
+      .contact-button { display: none; }   /* on phones, Contact is the last menu item instead */
+      .menu a .icon { display: none; }
+    }
+    @media (min-width: 701px) { .menu .menu-contact { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .menu a, .contact-button { transition: none; } }
+
+    /* Photo, name and role: centred, like a profile card */
+    .identity { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+    .avatar { width: 260px; height: 260px; object-fit: cover; border-radius: 0; }   /* square with sharp corners */
+    .sidebar h1 { font-size: var(--text-name); line-height: 1.1; }
+    .role { font-size: var(--text-md); font-weight: 500; margin-top: 6px; }
+    .focus { font-size: var(--text-xs); color: var(--muted); margin-top: 4px; text-wrap: balance; }   /* balance = even line lengths */
+
+    /* Availability status, like "Open to work" on LinkedIn: a green dot + short text */
+    .status {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+      padding: 5px 12px 5px 10px; border-radius: 999px;
+      background: var(--oat); color: var(--ink); font-size: var(--text-xs); font-weight: 500;
+    }
+    .status::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none;
+      background: var(--sage);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--sage) 25%, transparent);
+    }
+
+    /* On phones: a slightly smaller photo */
+    @media (max-width: 860px) { .avatar { width: 150px; height: 150px; } }
+
+    .contact { display: flex; flex-direction: column; gap: 9px; font-size: var(--text-sm); list-style: none; padding: 0; }
+    .contact li { display: flex; align-items: center; gap: 10px; overflow-wrap: anywhere; }
+    .contact .icon { color: var(--sage); }
+
+    /* "How I work" in the sidebar: a quiet note with a sage line on the left */
+    .how { border-left: 2px solid var(--sage); padding-left: 14px; display: flex; flex-direction: column; gap: 4px; }
+    .how p { color: var(--muted); font-size: var(--text-sm); line-height: 1.6; }
+
+    /* ---------- Main column ---------- */
+    main { display: flex; flex-direction: column; gap: 104px; min-width: 0; }
+    /* scroll-margin-top leaves room for the top bar when a button jumps to a section */
+    section { display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 96px; }
+    .subhead { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 400; color: var(--ink); }
+
+    /* About */
+    .lead { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.45; max-width: 52ch; }
+    .body-text { max-width: 62ch; }
+
+    /* Key results: four numbers in a quiet row, separated by thin lines */
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { display: flex; flex-direction: column; gap: 4px; padding: 18px 16px; border-left: 1px solid var(--line); }
+    .stat:first-child { border-left: 0; padding-left: 0; }
+    .stat .icon { color: var(--sage); }
+    .stat strong {
+      font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.1;
+      color: var(--cinnamon); font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+    .stat strong small { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 500; letter-spacing: 0; }
+    .stat b { font-size: var(--text-sm); font-weight: 600; color: var(--ink); line-height: 1.35; margin-top: 2px; }
+    .stat > span { font-size: var(--text-xs); color: var(--muted); line-height: 1.45; }
+    @media (max-width: 760px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+      .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+    }
+
+    /* Experience and education: full-width entries, dates after the company name */
+    .timeline { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+    .entry { padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .entry-body { display: flex; flex-direction: column; gap: 12px; }
+    .entry h3 { font-size: var(--text-lg); font-weight: 600; }
+    .org { color: var(--cinnamon); font-weight: 500; }
+    .dates { color: var(--muted); font-weight: 400; font-variant-numeric: tabular-nums; }
+    .meta { font-size: var(--text-sm); color: var(--muted); }
+    .entry ul:not(.chips) { display: flex; flex-direction: column; gap: 6px; max-width: 72ch; }
+    .entry li::marker { color: var(--sage); }
+
+    /* Earlier roles: a compact list */
+    .earlier { display: flex; flex-direction: column; }
+    .earlier-row { padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .earlier-row p { font-size: var(--text-sm); color: var(--muted); line-height: 1.7; }
+    .earlier-row strong { color: var(--ink); font-weight: 600; }
+
+    /* Languages: name and level side by side */
+    .langs { display: flex; flex-wrap: wrap; gap: 8px 28px; list-style: none; padding: 0; }
+    .langs li { display: flex; gap: 8px; align-items: baseline; }
+    .langs strong { font-weight: 600; }
+    .langs span { color: var(--muted); font-size: var(--text-sm); }
+
+    /* Skills: a two-column list, no boxes */
+    .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; list-style: none; padding: 0; }
+    .skill { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .skill .icon { color: var(--sage); margin-top: 3px; }
+    .skill p { font-size: var(--text-sm); color: var(--muted); margin-top: 2px; }
+    @media (max-width: 700px) { .skills { grid-template-columns: 1fr; } }
+
+    /* Tools: one row per group, label on the left */
+    .tools { display: flex; flex-direction: column; margin: 0; }
+    .tools-row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 24px; padding: 14px 0; border-top: 1px solid var(--line); align-items: baseline; }
+    .tools-row dt { font-size: var(--text-sm); font-weight: 600; }
+    .tools-row dd { margin: 0; }
+    @media (max-width: 640px) { .tools-row { grid-template-columns: 1fr; gap: 8px; } }
+
+    /* Courses and current learning: two plain columns */
+    .two-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+    .two-lists ul { font-size: var(--text-sm); display: flex; flex-direction: column; gap: 6px; }
+    .two-lists li::marker { color: var(--sage); }
+    @media (max-width: 700px) { .two-lists { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* ============================================================
+       6. CLOSING CONTACT — a calm, warm band at the end
+       ============================================================ */
+    .closing { margin-top: 120px; border-top: 1px solid var(--line); background: var(--surface); scroll-margin-top: 70px; }
+    .closing-inner {
+      max-width: 1160px; margin: 0 auto; padding: 72px 24px 80px;
+      display: flex; flex-direction: column; gap: 20px; align-items: flex-start;
+    }
+    .closing h2 { max-width: 22ch; }
+    .closing p { color: var(--muted); max-width: 52ch; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .button {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 22px; border-radius: 999px; text-decoration: none;
+      font-weight: 600; font-size: var(--text-sm); border: 1px solid var(--ink);
+    }
+    .button.primary { background: var(--ink); color: var(--surface); }
+    .button.primary:hover { background: var(--cinnamon); border-color: var(--cinnamon); }
+    .button.secondary { color: var(--ink); }
+    .button.secondary:hover { color: var(--cinnamon); border-color: var(--cinnamon); }
+    .email-text { font-size: var(--text-sm); color: var(--muted); }
+    @media (max-width: 600px) { .closing-inner { padding: 56px 16px 64px; } }
+
+    /* When printed: hide the menu, show everything in one column */
+    @media print {
+      .topbar { display: none; }
+      .page { display: block; padding: 0; }
+      .sidebar { position: static; margin-bottom: 32px; }
+      .avatar { width: 110px; height: 110px; }
+      main { gap: 40px; }
+      .closing { margin-top: 40px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     ICONS — drawn once here (hidden), then reused with:
+       <svg class="icon"><use href="#i-mail"></use></svg>
+     Each <symbol> is a small line drawing on a 24×24 grid.
+     ========================================================= -->
+<svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v6M8 7.5v.01M12 17v-6M12 13.5a2.5 2.5 0 0 1 5 0V17"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/><path d="M19 16v4M17 18h4"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+  <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+</svg>
+
+<!-- =========================================================
+     TOP BAR — one button per section. "href" jumps to the section
+     with the matching id, e.g. href="#o-mnie" → <section id="o-mnie">
+     ========================================================= -->
+
+
+<div class="page">
+
+  <!-- =========================================================
+       SIDEBAR — photo, name, role, contact, target roles, languages
+       ========================================================= -->
+  <aside class="sidebar">
+    <div class="identity">
+      <!-- "alt" describes the photo for people using screen readers -->
+      <img class="avatar" src="avatar.jpg" width="560" height="560" alt="Monika Sosnowska">
+      <div>
+        <h1>Monika Sosnowska</h1>
+        <p class="role"><span lang="pl">Koordynatorka Operacyjna</span><span lang="en">Operations Coordinator</span></p>
+        <p class="focus"><span lang="pl">Usprawnianie procesów · Dokumentacja · Excel · Onboarding</span><span lang="en">Process Improvement · Documentation · Excel · Onboarding</span></p>
+        <p class="status"><span lang="pl">Dostępna od zaraz · hybrydowo / zdalnie</span><span lang="en">Available now · hybrid / remote</span></p>
+      </div>
+    </div>
+
+    <div>
+      <p class="label"><span lang="pl">Kontakt</span><span lang="en">Contact</span></p>
+      <ul class="contact">
+        <li><svg class="icon"><use href="#i-pin"></use></svg><span lang="pl">Kraków, Polska</span><span lang="en">Kraków, Poland</span></li>
+        <!-- The address is shown as text too, because some browsers block mailto: links -->
+        <li><svg class="icon"><use href="#i-mail"></use></svg><a href="mailto:moniqasosnowsqa@gmail.com">moniqasosnowsqa@gmail.com</a></li>
+        <li><svg class="icon"><use href="#i-linkedin"></use></svg><a href="https://www.linkedin.com/in/monisosnowska/">linkedin.com/in/monisosnowska</a></li>
+      </ul>
+    </div>
+
+    <div class="how">
+      <p class="label"><span lang="pl">Jak pracuję</span><span lang="en">How I work</span></p>
+      <p lang="pl">Działam proaktywnie, samodzielnie i z nastawieniem na cel, a za wynik biorę odpowiedzialność. Łatwo buduję relacje, uważnie słucham i dobrze odnajduję się w zespołach międzynarodowych. Szukam praktycznych usprawnień i szybko uczę się nowych narzędzi.</p>
+      <p lang="en">I work proactively and independently, with a clear focus on goals, and I own the outcome. I build relationships easily, listen carefully and work well in international teams. I look for practical improvements and pick up new tools quickly.</p>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <div class="content">
+    <header class="topbar">
+    <nav class="menu" aria-label="Sections">
+      <a href="#o-mnie"><svg class="icon"><use href="#i-user"></use></svg><span lang="pl">O mnie</span><span lang="en">About</span></a>
+      <a href="#umiejetnosci"><svg class="icon"><use href="#i-sparkle"></use></svg><span lang="pl">Umiejętności</span><span lang="en">Skills</span></a>
+      <a href="#doswiadczenie"><svg class="icon"><use href="#i-briefcase"></use></svg><span lang="pl">Doświadczenie</span><span lang="en">Experience</span></a>
+      <a href="#wyksztalcenie"><svg class="icon"><use href="#i-cap"></use></svg><span lang="pl">Wykształcenie</span><span lang="en">Education</span></a>
+      <a class="menu-contact" href="#kontakt"><span lang="pl">Kontakt</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="topbar-right">
+      <a class="contact-button" href="#kontakt"><span lang="pl">Kontakt</span><span lang="en">Contact</span></a>
+      <!-- Language switch: the JavaScript at the bottom makes these buttons work -->
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" id="btn-pl" data-set-lang="pl" aria-pressed="true">PL</button>
+        <button type="button" id="btn-en" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    </header>
+
+  <main>
+
+    <!-- ---------- 1. ABOUT ---------- -->
+    <section id="o-mnie" aria-label="O mnie / About">
+      <p class="lead" lang="pl">Porządkuję chaos operacyjny. Tworzę procedury, narzędzia w Excelu i szkolenia, dzięki którym zespoły pracują szybciej i spójniej.</p>
+      <p class="lead" lang="en">I bring order to operational chaos. I build procedures, Excel tools and training that help teams work faster and more consistently.</p>
+
+      <p class="body-text" lang="pl">Mam ponad 6 lat doświadczenia w koordynacji operacji i administracji, w branżach: farmacja, nieruchomości, finanse, rekrutacja międzynarodowa, hotelarstwo i obsługa klienta. Tworzę SOP, zarządzam dokumentacją, buduję raporty i narzędzia w Excelu, szkolę nowe osoby i dbam o komunikację z interesariuszami. Najlepiej czuję się tam, gdzie trzeba usprawnić przepływ informacji, pilnować terminów i połączyć ludzi, dane i procesy w jeden uporządkowany system.</p>
+      <p class="body-text" lang="en">I have 6+ years of experience in operations coordination and administration across pharmaceuticals, real estate, finance, international recruitment, hospitality and customer service. I write SOPs, manage documentation, build Excel reports and tools, onboard new people and keep stakeholders informed. I do my best work where information flow needs fixing, deadlines need watching, and people, data and processes need to work as one orderly system.</p>
+
+      <!-- Key results in numbers. Each figure comes from the CV.
+           Each stat = number with unit, a short title (what changed), one line of context + company. -->
+      <div>
+        <p class="label"><span lang="pl">Najważniejsze wyniki</span><span lang="en">Key results</span></p>
+        <div class="stats">
+          <div class="stat">
+            <svg class="icon"><use href="#i-trend"></use></svg>
+            <strong>+40%</strong>
+            <b><span lang="pl">Efektywność zespołu</span><span lang="en">Team efficiency</span></b>
+            <span lang="pl">Dzięki narzędziu Excel, które stworzyłam dla 30-osobowego zespołu · Homfi</span>
+            <span lang="en">Thanks to an Excel tool I built for a team of 30 · Homfi</span>
+          </div>
+          <div class="stat">
+            <svg class="icon"><use href="#i-home"></use></svg>
+            <strong>~3&nbsp;000 <small><span lang="pl">mieszkań</span><span lang="en">flats</span></small></strong>
+            <b><span lang="pl">Skala wdrożenia</span><span lang="en">Scale of roll-out</span></b>
+            <span lang="pl">Mój plik do zarządzania 500+ mieszkaniami przejął cały dział · Homfi</span>
+            <span lang="en">My file for managing 500+ flats was adopted by the whole department · Homfi</span>
+          </div>
+          <div class="stat">
+            <svg class="icon"><use href="#i-clock"></use></svg>
+            <strong>3&nbsp;→&nbsp;1,5 <small><span lang="pl">mies.</span><span lang="en">months</span></small></strong>
+            <b><span lang="pl">Krótszy onboarding</span><span lang="en">Faster onboarding</span></b>
+            <span lang="pl">Czas wdrożenia nowych osób po moich szkoleniach · Homfi</span>
+            <span lang="en">Ramp-up time for new hires after my training · Homfi</span>
+          </div>
+          <div class="stat">
+            <svg class="icon"><use href="#i-globe"></use></svg>
+            <strong>15 <small><span lang="pl">regionów</span><span lang="en">regions</span></small></strong>
+            <b><span lang="pl">Nowe rynki rekrutacji</span><span lang="en">New recruitment markets</span></b>
+            <span lang="pl">Bliski Wschód i Azja w 6 miesięcy · Mady Swiss Dreams</span>
+            <span lang="en">Middle East and Asia within 6 months · Mady Swiss Dreams</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 2. SKILLS + TOOLS ---------- -->
+    <section id="umiejetnosci">
+      <h2><span lang="pl">Umiejętności</span><span lang="en">Skills</span></h2>
+
+      <ul class="skills">
+        <li class="skill">
+          <svg class="icon"><use href="#i-sliders"></use></svg>
+          <div>
+            <h3><span lang="pl">Koordynacja operacji i usprawnianie procesów</span><span lang="en">Operations coordination and process improvement</span></h3>
+            <p lang="pl">Tworzenie SOP, checklisty, standaryzacja i optymalizacja przepływów pracy, usuwanie wąskich gardeł.</p>
+            <p lang="en">SOP development, checklists, workflow standardisation and optimisation, removing bottlenecks.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-calendar"></use></svg>
+          <div>
+            <h3><span lang="pl">Koordynacja projektów</span><span lang="en">Project coordination</span></h3>
+            <p lang="pl">Planowanie, harmonogramy, priorytety, monitorowanie postępów, follow-up. Agile, Scrum, Waterfall.</p>
+            <p lang="en">Planning, schedules, priorities, progress tracking, follow-up. Agile, Scrum, Waterfall.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-folder"></use></svg>
+          <div>
+            <h3><span lang="pl">Zarządzanie dokumentacją i digitalizacja</span><span lang="en">Documentation management and digitalisation</span></h3>
+            <p lang="pl">Rejestry, archiwizacja, dzienniki cyfrowe, obieg korespondencji, szablony i instrukcje.</p>
+            <p lang="en">Registers, archiving, digital logs, correspondence flow, templates and instructions.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-table"></use></svg>
+          <div>
+            <h3><span lang="pl">Zaawansowany Excel i raportowanie</span><span lang="en">Advanced Excel and reporting</span></h3>
+            <p lang="pl">Narzędzia operacyjne, zestawienia finansowe, salda, makra, organizacja i weryfikacja danych.</p>
+            <p lang="en">Operational tools, financial statements, balances, macros, organising and checking data.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-board"></use></svg>
+          <div>
+            <h3><span lang="pl">Onboarding i szkolenia</span><span lang="en">Onboarding and training</span></h3>
+            <p lang="pl">Materiały szkoleniowe, instrukcje krok po kroku, krótszy czas adaptacji.</p>
+            <p lang="en">Training materials, step-by-step guides, faster ramp-up.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-users"></use></svg>
+          <div>
+            <h3><span lang="pl">Zarządzanie interesariuszami</span><span lang="en">Stakeholder management</span></h3>
+            <p lang="pl">Klienci, właściciele, uniwersytety, brokerzy, działy wewnętrzne. Komunikacja międzykulturowa po angielsku.</p>
+            <p lang="en">Clients, owners, universities, brokers, internal teams. Cross-cultural communication in English.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-wallet"></use></svg>
+          <div>
+            <h3><span lang="pl">Administracja finansowa</span><span lang="en">Financial administration</span></h3>
+            <p lang="pl">Monitorowanie płatności, rozliczenia najmu i mediów, faktury, windykacja.</p>
+            <p lang="en">Payment monitoring, rent and utility billing, invoices, collections.</p>
+          </div>
+        </li>
+        <li class="skill">
+          <svg class="icon"><use href="#i-chat"></use></svg>
+          <div>
+            <h3><span lang="pl">Obsługa klienta i koordynacja biura</span><span lang="en">Customer service and office coordination</span></h3>
+            <p lang="pl">Operacje recepcyjne, goście z Polski i z zagranicy, biuro, rozwiązywanie trudnych sytuacji.</p>
+            <p lang="en">Reception operations, Polish and international guests, office running, handling difficult situations.</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="subhead"><span lang="pl">Narzędzia i programy</span><span lang="en">Tools and software</span></p>
+      <!-- <dl> is a "description list": pairs of a term (dt) and its description (dd).
+           Every tool here comes from the master CV or the Basic resume. -->
+      <dl class="tools">
+        <div class="tools-row">
+          <dt>Microsoft 365</dt>
+          <dd><ul class="chips"><li><span lang="pl">Excel (zaawansowany, makra)</span><span lang="en">Excel (advanced, macros)</span></li><li>Word</li><li>PowerPoint</li><li>Outlook</li><li>Teams</li><li>SharePoint</li><li>Access</li><li>MS Project</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt>Google</dt>
+          <dd><ul class="chips"><li>Google Workspace</li><li>Gmail</li><li>Google Meet</li><li>Google Analytics</li><li>Google Data Studio</li><li>Google Classroom</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Zarządzanie projektami</span><span lang="en">Project management</span></dt>
+          <dd><ul class="chips"><li>Jira</li><li>Confluence</li><li>Asana</li><li>Trello</li><li>MS Project</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">CRM, ERP i HR</span><span lang="en">CRM, ERP and HR</span></dt>
+          <dd><ul class="chips"><li>HubSpot</li><li>Gestor GT</li><li>Comarch Optima</li><li>Subiekt GT</li><li>Workday</li><li>enova</li><li>Freshdesk</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Finanse i fakturowanie</span><span lang="en">Finance and invoicing</span></dt>
+          <dd><ul class="chips"><li>inFakt</li><li>Fakturownia</li><li><span lang="pl">Bankowość firmowa (ING, BNP)</span><span lang="en">Business banking (ING, BNP)</span></li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Dane i raporty</span><span lang="en">Data and reporting</span></dt>
+          <dd><ul class="chips"><li>Excel</li><li>Access</li><li>Google Data Studio</li><li><span lang="pl">Power BI (w trakcie nauki)</span><span lang="en">Power BI (learning)</span></li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Dokumenty i digitalizacja</span><span lang="en">Documents and digitalisation</span></dt>
+          <dd><ul class="chips"><li>Adobe Acrobat Pro</li><li><span lang="pl">Narzędzia OCR</span><span lang="en">OCR tools</span></li><li>e-Doręczenia</li><li>LibreOffice</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Grafika i prezentacje</span><span lang="en">Design and presentations</span></dt>
+          <dd><ul class="chips"><li>Canva</li><li>Figma</li><li>Adobe Illustrator</li><li>Adobe InDesign</li><li>Adobe XD</li><li>Picsart</li><li>Prezi</li><li>Infogram</li><li>Piktochart</li><li>Draw.io</li><li>AutoCAD</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Strony i treści online</span><span lang="en">Websites and online content</span></dt>
+          <dd><ul class="chips"><li>WordPress</li><li>Joomla</li><li>Senuto</li><li>Moodle</li><li>Instagram</li><li>Facebook</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Komunikacja</span><span lang="en">Communication</span></dt>
+          <dd><ul class="chips"><li>Teams</li><li>Zoom</li><li>Google Meet</li><li>ClickMeeting</li><li>WhatsApp</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Rezerwacje i sprzedaż</span><span lang="en">Bookings and sales</span></dt>
+          <dd><ul class="chips"><li>Booking.com</li><li>Expedia</li><li>Hotelgram</li><li>Versum</li><li>Booksy</li><li>Allegro</li></ul></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- ---------- 3. EXPERIENCE ---------- -->
+    <section id="doswiadczenie">
+      <h2><span lang="pl">Doświadczenie</span><span lang="en">Experience</span></h2>
+
+      <div class="timeline">
+
+        <!-- Teva -->
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Koordynatorka Operacyjna</span><span lang="en">Operations Coordinator</span></h3>
+              <p class="org">Teva Pharmaceuticals <span class="dates">· <span lang="pl">sie 2025 – obecnie</span><span lang="en">Aug 2025 – present</span></span></p>
+              <p class="meta"><span lang="pl">Kraków · farmacja · praca stacjonarna</span><span lang="en">Kraków · pharmaceuticals · on-site</span></p>
+            </div>
+            <ul lang="pl">
+              <li>Przeprowadziłam digitalizację Rejestru Korespondencji Przychodzącej w dużym zakładzie produkcyjnym: z papieru na model hybrydowy z przewagą rozwiązań cyfrowych.</li>
+              <li>Podzieliłam proces na etapy i stworzyłam szablony, rejestry i checklisty, które ustandaryzowały pracę recepcji, ochrony i kancelarii.</li>
+              <li>Przeszkoliłam pracowników z nowego modelu pracy i zasad kancelaryjnych.</li>
+              <li>Koordynuję obsługę gości krajowych i międzynarodowych oraz ruch osób zgodnie z procedurami bezpieczeństwa.</li>
+              <li>Opracowałam bazę pracowników i pliki operacyjne, które usprawniły codzienny przepływ informacji.</li>
+            </ul>
+            <ul lang="en">
+              <li>Led the digitalisation of the incoming correspondence register at a large manufacturing site, moving it from paper to a hybrid, mostly digital model.</li>
+              <li>Broke the process into stages and built templates, registers and checklists that standardised work across reception, security and records.</li>
+              <li>Trained staff on the new way of working and records-management rules.</li>
+              <li>Coordinate Polish and international visitors and site access in line with safety procedures.</li>
+              <li>Built an employee database and operational files that improved daily information flow.</li>
+            </ul>
+            <ul class="chips">
+              <li><span lang="pl">Cyfrowe rejestry</span><span lang="en">Digital registers</span></li>
+              <li>e-Doręczenia</li>
+              <li>Microsoft Office</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Mady Swiss Dreams -->
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Koordynatorka Operacyjna</span><span lang="en">Operations Coordinator</span></h3>
+              <p class="org">Mady Swiss Dreams <span class="dates">· <span lang="pl">sty 2025 – cze 2025</span><span lang="en">Jan 2025 – Jun 2025</span></span></p>
+              <p class="meta"><span lang="pl">Zdalnie · edukacja i rekrutacja międzynarodowa</span><span lang="en">Remote · education and international recruitment</span></p>
+            </div>
+            <ul lang="pl">
+              <li>Koordynowałam rekrutację kandydatów z 15 nowych regionów Bliskiego Wschodu i Azji w ciągu sześciu miesięcy.</li>
+              <li>Zbudowałam ścieżkę kandydata: formularz na stronie, reklamy w social media, wsparcie mailowe i telefoniczne.</li>
+              <li>Koordynowałam komunikację i dokumenty między kandydatami, ich rodzinami, uniwersytetami i agentami. Pilnowałam terminów i statusów aplikacji.</li>
+              <li>Uczestniczyłam w spotkaniach strategicznych z CEO i optymalizowałam procesy wewnętrzne.</li>
+              <li>Nadzorowałam mały zdalny zespół (lead generation, social media, strona) i tworzyłam prezentacje, infografiki oraz materiały do kampanii.</li>
+            </ul>
+            <ul lang="en">
+              <li>Coordinated recruitment of candidates from 15 new regions in the Middle East and Asia within six months.</li>
+              <li>Built the candidate journey: website form, social media ads, email and phone support.</li>
+              <li>Coordinated communication and documents between candidates, their families, universities and agents. Tracked application deadlines and statuses.</li>
+              <li>Took part in strategy meetings with the CEO and optimised internal processes.</li>
+              <li>Supervised a small remote team (lead generation, social media, website) and created presentations, infographics and campaign materials.</li>
+            </ul>
+            <ul class="chips">
+              <li>Excel</li><li>PowerPoint</li><li>Canva</li><li>Teams</li><li>Zoom</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Homfi -->
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Starsza Specjalistka ds. Zarządzania Najmem</span><span lang="en">Senior Rental Management Specialist</span></h3>
+              <p class="org">Homfi <span class="dates">· <span lang="pl">gru 2022 – lis 2024</span><span lang="en">Dec 2022 – Nov 2024</span></span></p>
+              <p class="meta"><span lang="pl">Kraków · nieruchomości · portfel w całej Polsce</span><span lang="en">Kraków · real estate · portfolio across Poland</span></p>
+            </div>
+            <ul lang="pl">
+              <li>Stworzyłam uniwersalny plik Excel do zarządzania portfelem 500+ mieszkań. Cały dział wdrożył go później dla prawie 3 000 mieszkań.</li>
+              <li>Narzędzie zwiększyło efektywność pracy o 40% i wspierało 30-osobowy zespół.</li>
+              <li>Przygotowałam i poprowadziłam szkolenia onboardingowe dla działu rozliczeń: czas wdrożenia spadł z 3 do 1,5 miesiąca.</li>
+              <li>Przygotowywałam raporty finansowe, salda najemców i zestawienia płatności. Monitorowałam płatności i rozliczałam media.</li>
+              <li>Rozwiązywałam sprawy najemców, właścicieli, administracji budynków i dostawców mediów.</li>
+            </ul>
+            <ul lang="en">
+              <li>Built a standard Excel file for managing 500+ apartments. The whole department later adopted it for nearly 3,000 apartments.</li>
+              <li>The tool raised team efficiency by 40% and supported a team of 30.</li>
+              <li>Designed and ran onboarding training for the billing team, cutting ramp-up time from 3 months to 1.5.</li>
+              <li>Prepared financial reports, tenant balances and payment statements. Monitored payments and handled utility billing.</li>
+              <li>Resolved issues with tenants, owners, building administrators and utility providers.</li>
+            </ul>
+            <ul class="chips">
+              <li>Excel</li><li>Google Workspace</li><li>Asana</li><li>Trello</li><li>Freshdesk</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- State Street -->
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Administratorka Operacji Inwestycyjnych</span><span lang="en">Investment Operations Administrator</span></h3>
+              <p class="org">State Street Bank <span class="dates">· <span lang="pl">kwi 2022 – sie 2022</span><span lang="en">Apr 2022 – Aug 2022</span></span></p>
+              <p class="meta"><span lang="pl">Kraków · finanse · zespół globalny</span><span lang="en">Kraków · finance · global team</span></p>
+            </div>
+            <ul lang="pl">
+              <li>Przetwarzałam transakcje inwestycyjne i dokumentację funduszy w anglojęzycznym zespole w wielu strefach czasowych.</li>
+              <li>Dbałam o jakość i zgodność wrażliwych danych finansowych pod presją czasu.</li>
+              <li>Byłam łącznikiem między zespołami, klientami, brokerami i księgowymi funduszy. Szkoliłam nowe osoby.</li>
+            </ul>
+            <ul lang="en">
+              <li>Processed investment transactions and fund documentation in an English-speaking team across time zones.</li>
+              <li>Ensured quality and compliance of sensitive financial data under time pressure.</li>
+              <li>Acted as the link between teams, clients, brokers and fund accountants. Trained new hires.</li>
+            </ul>
+            <ul class="chips">
+              <li><span lang="pl">Excel (makra)</span><span lang="en">Excel (macros)</span></li>
+              <li>Power BI</li><li>Workday</li><li>enova</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- Earlier roles: one line each, so the page stays short -->
+      <p class="subhead"><span lang="pl">Wcześniej</span><span lang="en">Earlier</span></p>
+      <div class="earlier">
+        <div class="earlier-row">
+          <p lang="pl"><strong>Koordynatorka Administracji, Apartamenty Turnau</strong> <span class="dates">· <span lang="pl">lip 2021 – mar 2022</span><span lang="en">Jul 2021 – Mar 2022</span></span><br> Biuro, recepcja, fakturowanie i digitalizacja dokumentów, która ograniczyła błędy administracyjne.</p>
+          <p lang="en"><strong>Administration Coordinator, Apartamenty Turnau</strong> <span class="dates">· <span lang="pl">lip 2021 – mar 2022</span><span lang="en">Jul 2021 – Mar 2022</span></span><br> Office, reception, invoicing and document digitalisation that reduced admin errors.</p>
+        </div>
+        <div class="earlier-row">
+          <p lang="pl"><strong>Koordynatorka Recepcji, Thai Mai</strong> <span class="dates">· <span lang="pl">paź 2019 – lip 2021</span><span lang="en">Oct 2019 – Jul 2021</span></span><br> Operacje recepcyjne i codzienne funkcjonowanie salonu: grafiki, rezerwacje, sprzedaż i szkolenie pracowników z Tajlandii i Indonezji.</p>
+          <p lang="en"><strong>Reception Coordinator, Thai Mai</strong> <span class="dates">· <span lang="pl">paź 2019 – lip 2021</span><span lang="en">Oct 2019 – Jul 2021</span></span><br> Reception operations and daily running of the salon: schedules, bookings, sales and training staff from Thailand and Indonesia.</p>
+        </div>
+        <div class="earlier-row">
+          <p lang="pl"><strong>Specjalistka ds. Wsparcia Technicznego, Teleinvention</strong> <span class="dates">· <span lang="pl">paź 2018 – gru 2018</span><span lang="en">Oct 2018 – Dec 2018</span></span><br> Diagnozowanie usterek przez telefon i obsługa zgłoszeń w CRM.</p>
+          <p lang="en"><strong>Technical Support Specialist, Teleinvention</strong> <span class="dates">· <span lang="pl">paź 2018 – gru 2018</span><span lang="en">Oct 2018 – Dec 2018</span></span><br> Phone troubleshooting and ticket handling in the CRM.</p>
+        </div>
+        <div class="earlier-row">
+          <p lang="pl"><strong>Recepcja i sprzedaż.</strong> Prywatna siłownia i Glamour Boutique: obsługa klienta i sprzedaż.</p>
+          <p lang="en"><strong>Reception and sales.</strong> Private gym and Glamour Boutique: customer service and sales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 4. EDUCATION + LEARNING ---------- -->
+    <section id="wyksztalcenie">
+      <h2><span lang="pl">Wykształcenie</span><span lang="en">Education</span></h2>
+
+      <div class="timeline">
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Magister, Zarządzanie informacją</span><span lang="en">Master's degree, Information Management</span></h3>
+              <p class="org"><span lang="pl">Uniwersytet Jagielloński w Krakowie</span><span lang="en">Jagiellonian University, Kraków</span> <span class="dates">· 2020 – 2022</span></p>
+            </div>
+            <p class="meta" lang="pl">Starosta grupy. Praktyki w archiwum i bibliotece uczelni. Współorganizacja Nocy Naukowców i projektu „UPoluj kulturę!”.</p>
+            <p class="meta" lang="en">Group representative. Internships at the university archive and library. Co-organised European Researchers' Night and the "UPoluj kulturę!" project.</p>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="entry-body">
+            <div>
+              <h3><span lang="pl">Licencjat, Zarządzanie informacją i publikowanie cyfrowe</span><span lang="en">Bachelor's degree, Information Management and Digital Publishing</span></h3>
+              <p class="org"><span lang="pl">Uniwersytet Komisji Edukacji Narodowej w Krakowie</span><span lang="en">University of the National Education Commission, Kraków</span> <span class="dates">· 2017 – 2020</span></p>
+            </div>
+            <p class="meta" lang="pl">Architektura informacji, digitalizacja, archiwizacja, UX, CMS i podstawy analizy danych.</p>
+            <p class="meta" lang="en">Information architecture, digitalisation, archiving, UX, CMS and basic data analysis.</p>
+          </div>
+        </article>
+      </div>
+
+
+      <div class="two-lists">
+        <div>
+          <p class="subhead"><span lang="pl">Kursy</span><span lang="en">Courses</span></p>
+          <ul lang="pl" style="margin-top: 12px;">
+            <li>Podstawy zarządzania projektami: LinkedIn Learning × Microsoft</li>
+            <li>Google Project Management</li>
+            <li>Wprowadzenie do AI: Microsoft</li>
+            <li>Six Sigma White Belt: Educate 360 (w trakcie)</li>
+          </ul>
+          <ul lang="en" style="margin-top: 12px;">
+            <li>Project Management Foundations: LinkedIn Learning × Microsoft</li>
+            <li>Google Project Management</li>
+            <li>Introduction to AI: Microsoft</li>
+            <li>Six Sigma White Belt: Educate 360 (in progress)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="subhead"><span lang="pl">Teraz się uczę</span><span lang="en">Learning now</span></p>
+          <ul lang="pl" style="margin-top: 12px;">
+            <li>Power BI: raporty i dashboardy</li>
+            <li>Python i analiza danych (pandas, Jupyter)</li>
+            <li>Git i GitHub: ta strona to mój pierwszy projekt</li>
+          </ul>
+          <ul lang="en" style="margin-top: 12px;">
+            <li>Power BI: reports and dashboards</li>
+            <li>Python and data analysis (pandas, Jupyter)</li>
+            <li>Git and GitHub: this website is my first project</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="subhead"><span lang="pl">Języki</span><span lang="en">Languages</span></p>
+      <ul class="langs">
+        <li><strong><span lang="pl">Polski</span><span lang="en">Polish</span></strong><span><span lang="pl">ojczysty</span><span lang="en">native</span></span></li>
+        <li><strong><span lang="pl">Angielski</span><span lang="en">English</span></strong><span>B2+</span></li>
+        <li><strong><span lang="pl">Hiszpański</span><span lang="en">Spanish</span></strong><span>A2</span></li>
+      </ul>
+    </section>
+
+  </main>
+  </div>
+</div>
+
+<!-- =========================================================
+     CLOSING CONTACT
+     ========================================================= -->
+<section class="closing" id="kontakt">
+  <div class="closing-inner">
+    <h2><span lang="pl">Porozmawiajmy</span><span lang="en">Let's talk</span></h2>
+    <p lang="pl">Szukam roli w trybie hybrydowym lub zdalnym, w której uporządkuję procesy i pomogę zespołowi działać sprawniej. Mogę zacząć od zaraz i chętnie opowiem więcej o swoich projektach.</p>
+    <p lang="en">I'm looking for a hybrid or remote role where I can organise processes and help a team run more smoothly. I can start right away and I'm happy to tell you more about my projects.</p>
+    <div class="actions">
+      <a class="button primary" href="mailto:moniqasosnowsqa@gmail.com"><svg class="icon"><use href="#i-mail"></use></svg><span lang="pl">Napisz e-mail</span><span lang="en">Send an email</span></a>
+      <a class="button secondary" href="https://www.linkedin.com/in/monisosnowska/"><svg class="icon"><use href="#i-linkedin"></use></svg>LinkedIn</a>
+    </div>
+    <!-- The address is shown as text too, because some browsers block mailto: links -->
+    <p class="email-text">moniqasosnowsqa@gmail.com</p>
+  </div>
+</section>
+
+<script>
+  // ==========================================================
+  // LANGUAGE SWITCH
+  // A "function" is a named set of steps we can run many times.
+  // setLanguage("en") switches the page to English, ("pl") to Polish.
+  // ==========================================================
+  function setLanguage(lang) {
+    const isEnglish = (lang === "en");
+
+    // Add or remove the "show-en" class on <html>; the CSS does the hiding
+    document.documentElement.classList.toggle("show-en", isEnglish);
+    document.documentElement.lang = lang;
+
+    // Highlight the button that is active
+    document.getElementById("btn-pl").setAttribute("aria-pressed", String(!isEnglish));
+    document.getElementById("btn-en").setAttribute("aria-pressed", String(isEnglish));
+
+    // Remember the choice for the next visit (some browsers block this, so we "try")
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+
+  // When a PL or EN button is clicked, switch to that language
+  document.querySelectorAll("[data-set-lang]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      setLanguage(button.dataset.setLang);
+    });
+  });
+
+  // Choose the starting language:
+  //   1. a link ending in ?lang=en (handy to send to English-speaking recruiters)
+  //   2. otherwise the language chosen on the last visit
+  //   3. otherwise Polish
+  let startLang = new URLSearchParams(window.location.search).get("lang");
+  if (!startLang) {
+    try { startLang = localStorage.getItem("lang"); } catch (e) {}
+  }
+  setLanguage(startLang === "en" ? "en" : "pl");
+
+  // ==========================================================
+  // MENU HIGHLIGHT
+  // An "IntersectionObserver" watches the sections and tells us
+  // which one is in the middle of the screen. We then mark its
+  // button with aria-current="true", and the CSS colours it dark.
+  // ==========================================================
+  const menuLinks = document.querySelectorAll(".menu a");
+
+  function highlight(sectionId) {
+    menuLinks.forEach(function (link) {
+      const isCurrent = link.getAttribute("href") === "#" + sectionId;
+      link.setAttribute("aria-current", String(isCurrent));
+    });
+  }
+
+  if ("IntersectionObserver" in window) {
+    const watcher = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) highlight(entry.target.id);
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });   // a thin line across the middle of the screen
+
+    document.querySelectorAll("main section[id], #kontakt").forEach(function (section) {
+      watcher.observe(section);
+    });
+  }
+</script>
+</body>
+</html>

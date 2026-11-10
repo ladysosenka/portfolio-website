@@ -1,0 +1,12 @@
+# Files Git should never upload to GitHub
+
+# macOS system files
+.DS_Store
+
+# Secrets (passwords, API keys) — never commit these
+.env
+.env.*
+
+# Editor settings
+.vscode/
+.idea/
