@@ -26,14 +26,21 @@
   <meta charset="utf-8">
   <!-- Makes the page fit phone screens instead of showing a tiny desktop page -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Monika Sosnowska Portfolio</title>
+  <title>Monika Sosnowska · Operations &amp; Project Coordinator</title>
   <!-- The description is what search engines show under the link; it carries the main keywords -->
-  <meta name="description" content="Monika Sosnowska, Operations Coordinator in Kraków. 6+ years in operations: process improvement, SOP development, documentation management, Excel reporting, onboarding and stakeholder management. Available now for hybrid or remote roles.">
+  <meta name="description" content="Monika Sosnowska, Operations &amp; Project Coordinator in Kraków. 6+ years in operations: process improvement, implementation, SOPs, documentation, Excel and data reporting, onboarding and stakeholder management. Available within 2 weeks for hybrid or remote roles.">
 
   <!-- Shown when the link is pasted into LinkedIn, Slack, Messenger etc. -->
-  <meta property="og:title" content="Monika Sosnowska · Operations Coordinator">
-  <meta property="og:description" content="6+ years in operations. Process improvement, SOPs, documentation, Excel reporting and onboarding. Available now for hybrid or remote roles.">
+  <meta property="og:title" content="Monika Sosnowska · Operations &amp; Project Coordinator">
+  <meta property="og:description" content="6+ years in operations. Process improvement, implementation, SOPs, Excel and data, and tools built with AI. Available within 2 weeks for hybrid or remote roles.">
   <meta property="og:type" content="profile">
+  <!-- The picture shown in the LinkedIn preview. It must be a full web address, 1200 x 627 px -->
+  <meta property="og:url" content="https://ladysosenka.github.io/portfolio-website/">
+  <meta property="og:image" content="https://ladysosenka.github.io/portfolio-website/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Monika Sosnowska, Operations &amp; Project Coordinator: turning messy processes into clear, working systems">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Tab icon: the initials "MS" drawn as a tiny SVG image -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f2723'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f2ece3' text-anchor='middle'%3EMS%3C/text%3E%3C/svg%3E">
@@ -177,7 +184,8 @@
       white-space: nowrap;
       transition: background-color 150ms, color 150ms, border-color 150ms;
     }
-    .menu a .icon { width: 16px; height: 16px; color: var(--sage); }
+    /* Icons are hidden in the menu: with five sections they pushed "Education" out of view on laptops */
+    .menu a .icon { display: none; }
     .menu a:hover { background: var(--surface); border-color: var(--line); }
     /* The button of the section you are reading now (set by the JavaScript) */
     .menu a[aria-current="true"] { background: var(--ink); color: var(--surface); }
@@ -398,9 +406,9 @@
       <img class="avatar" src="avatar.jpg" width="560" height="560" alt="Monika Sosnowska">
       <div>
         <h1>Monika Sosnowska</h1>
-        <p class="role"><span lang="pl">Koordynatorka Operacyjna</span><span lang="en">Operations Coordinator</span></p>
-        <p class="focus"><span lang="pl">Usprawnianie procesów · Dokumentacja · Excel · Onboarding</span><span lang="en">Process Improvement · Documentation · Excel · Onboarding</span></p>
-        <p class="status"><span lang="pl">Dostępna od zaraz · hybrydowo / zdalnie</span><span lang="en">Available now · hybrid / remote</span></p>
+        <p class="role"><span lang="pl">Koordynatorka operacji i projektów</span><span lang="en">Operations &amp; Project Coordinator</span></p>
+        <p class="focus"><span lang="pl">Usprawnianie procesów · Wdrożenia · Excel i dane</span><span lang="en">Process Improvement · Implementation · Excel &amp; Data</span></p>
+        <p class="status"><span lang="pl">Dostępna w ciągu 2 tygodni · hybrydowo / zdalnie</span><span lang="en">Available within 2 weeks · hybrid / remote</span></p>
       </div>
     </div>
 
@@ -416,8 +424,8 @@
 
     <div class="how">
       <p class="label"><span lang="pl">Jak pracuję</span><span lang="en">How I work</span></p>
-      <p lang="pl">Działam proaktywnie, samodzielnie i z nastawieniem na cel, a za wynik biorę odpowiedzialność. Łatwo buduję relacje, uważnie słucham i dobrze odnajduję się w zespołach międzynarodowych. Szukam praktycznych usprawnień i szybko uczę się nowych narzędzi.</p>
-      <p lang="en">I work proactively and independently, with a clear focus on goals, and I own the outcome. I build relationships easily, listen carefully and work well in international teams. I look for practical improvements and pick up new tools quickly.</p>
+      <p lang="pl">Najpierw szukam prawdziwej przyczyny problemu, a nie pierwszego objawu. Chaotyczny proces zamieniam w proste rozwiązanie, z którego zespół chętnie korzysta. Biorę odpowiedzialność za zadanie: znam cel i organizuję pracę, żeby go osiągnąć.</p>
+      <p lang="en">I look for the real cause of a problem, not the first symptom. I turn a messy process into a simple solution the team is happy to use. I take ownership: I know the goal and organise the work to get there.</p>
     </div>
   </aside>
 
@@ -448,8 +456,8 @@
 
     <!-- ---------- 1. ABOUT ---------- -->
     <section id="o-mnie" aria-label="O mnie / About">
-      <p class="lead" lang="pl">Porządkuję chaos operacyjny. Tworzę procedury, narzędzia w Excelu i szkolenia, dzięki którym zespoły pracują szybciej i spójniej.</p>
-      <p class="lead" lang="en">I bring order to operational chaos. I build procedures, Excel tools and training that help teams work faster and more consistently.</p>
+      <p class="lead" lang="pl">Porządkuję chaos operacyjny. Tworzę procedury, narzędzia w Excelu, proste aplikacje z AI i szkolenia, dzięki którym zespoły pracują szybciej i spójniej.</p>
+      <p class="lead" lang="en">I bring order to operational chaos. I build procedures, Excel tools, simple AI-powered apps and training that help teams work faster and more consistently.</p>
 
       <p class="body-text" lang="pl">Mam ponad 6 lat doświadczenia w koordynacji operacji i administracji, w branżach: farmacja, nieruchomości, finanse, rekrutacja międzynarodowa, hotelarstwo i obsługa klienta. Tworzę SOP, zarządzam dokumentacją, buduję raporty i narzędzia w Excelu, szkolę nowe osoby i dbam o komunikację z interesariuszami. Najlepiej czuję się tam, gdzie trzeba usprawnić przepływ informacji, pilnować terminów i połączyć ludzi, dane i procesy w jeden uporządkowany system.</p>
       <p class="body-text" lang="en">I have 6+ years of experience in operations coordination and administration across pharmaceuticals, real estate, finance, international recruitment, hospitality and customer service. I write SOPs, manage documentation, build Excel reports and tools, onboard new people and keep stakeholders informed. I do my best work where information flow needs fixing, deadlines need watching, and people, data and processes need to work as one orderly system.</p>
@@ -508,8 +516,8 @@
           <svg class="icon"><use href="#i-calendar"></use></svg>
           <div>
             <h3><span lang="pl">Koordynacja projektów</span><span lang="en">Project coordination</span></h3>
-            <p lang="pl">Planowanie, harmonogramy, priorytety, monitorowanie postępów, follow-up. Agile, Scrum, Waterfall.</p>
-            <p lang="en">Planning, schedules, priorities, progress tracking, follow-up. Agile, Scrum, Waterfall.</p>
+            <p lang="pl">Planowanie, harmonogramy, priorytety, monitorowanie postępów, follow-up. Agile, Scrum, Kanban, Waterfall, MoSCoW, Lean, PDCA, RACI, 5 Why, KPI, Six Sigma (White Belt, w trakcie).</p>
+            <p lang="en">Planning, schedules, priorities, progress tracking, follow-up. Agile, Scrum, Kanban, Waterfall, MoSCoW, Lean, PDCA, RACI, 5 Why, KPI, Six Sigma (White Belt, in progress).</p>
           </div>
         </li>
         <li class="skill">
@@ -564,51 +572,55 @@
 
       <p class="subhead"><span lang="pl">Narzędzia i programy</span><span lang="en">Tools and software</span></p>
       <!-- <dl> is a "description list": pairs of a term (dt) and its description (dd).
-           Every tool here comes from the master CV or the Basic resume. -->
+           Tool list confirmed by Monika on 2026-11-16. Each tool appears once. -->
       <dl class="tools">
         <div class="tools-row">
-          <dt>Microsoft 365</dt>
-          <dd><ul class="chips"><li><span lang="pl">Excel (zaawansowany, makra)</span><span lang="en">Excel (advanced, macros)</span></li><li>Word</li><li>PowerPoint</li><li>Outlook</li><li>Teams</li><li>SharePoint</li><li>Access</li><li>MS Project</li></ul></dd>
-        </div>
-        <div class="tools-row">
-          <dt>Google</dt>
-          <dd><ul class="chips"><li>Google Workspace</li><li>Gmail</li><li>Google Meet</li><li>Google Analytics</li><li>Google Data Studio</li><li>Google Classroom</li></ul></dd>
-        </div>
-        <div class="tools-row">
-          <dt><span lang="pl">Zarządzanie projektami</span><span lang="en">Project management</span></dt>
-          <dd><ul class="chips"><li>Jira</li><li>Confluence</li><li>Asana</li><li>Trello</li><li>MS Project</li></ul></dd>
-        </div>
-        <div class="tools-row">
-          <dt><span lang="pl">CRM, ERP i HR</span><span lang="en">CRM, ERP and HR</span></dt>
-          <dd><ul class="chips"><li>HubSpot</li><li>Gestor GT</li><li>Comarch Optima</li><li>Subiekt GT</li><li>Workday</li><li>enova</li><li>Freshdesk</li></ul></dd>
-        </div>
-        <div class="tools-row">
-          <dt><span lang="pl">Finanse i fakturowanie</span><span lang="en">Finance and invoicing</span></dt>
-          <dd><ul class="chips"><li>inFakt</li><li>Fakturownia</li><li><span lang="pl">Bankowość firmowa (ING, BNP)</span><span lang="en">Business banking (ING, BNP)</span></li></ul></dd>
+          <dt><span lang="pl">Microsoft 365 i Google Workspace</span><span lang="en">Microsoft 365 and Google Workspace</span></dt>
+          <dd><ul class="chips"><li><span lang="pl">Excel (zaawansowany, makra)</span><span lang="en">Excel (advanced, macros)</span></li><li>SharePoint</li><li><span lang="pl">PowerPoint (zaawansowany)</span><span lang="en">PowerPoint (advanced)</span></li><li>Word</li><li>Outlook</li><li>Google Workspace</li><li><span lang="pl">Google Sheets (zaawansowany)</span><span lang="en">Google Sheets (advanced)</span></li><li>Google Sites</li></ul></dd>
         </div>
         <div class="tools-row">
           <dt><span lang="pl">Dane i raporty</span><span lang="en">Data and reporting</span></dt>
-          <dd><ul class="chips"><li>Excel</li><li>Access</li><li>Google Data Studio</li><li><span lang="pl">Power BI (w trakcie nauki)</span><span lang="en">Power BI (learning)</span></li></ul></dd>
+          <dd><ul class="chips"><li>Power BI</li><li>Power Query</li><li>SQL</li><li>Power Pivot</li><li>Microsoft Access</li><li>Looker Studio</li><li>Tableau</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Zarządzanie projektami</span><span lang="en">Project management</span></dt>
+          <dd><ul class="chips"><li>Jira</li><li>Confluence</li><li>Microsoft Project</li><li>Microsoft Planner</li><li>Asana</li><li>Monday.com</li><li>ClickUp</li><li>Trello</li><li>Notion</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">CRM, ERP, HR i fakturowanie</span><span lang="en">CRM, ERP, HR and invoicing</span></dt>
+          <dd><ul class="chips"><li>SAP S/4HANA</li><li>Salesforce</li><li>Microsoft Dynamics 365 Sales</li><li>HubSpot CRM</li><li>Workday</li><li>Workable</li><li>enova365</li><li>Comarch ERP Optima</li><li>Symfonia ERP</li><li>Subiekt GT</li><li>Gestor GT</li><li>inFakt</li><li>Fakturownia</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Automatyzacja i AI</span><span lang="en">Automation and AI</span></dt>
+          <dd><ul class="chips"><li>Power Automate</li><li>Power Apps</li><li>Microsoft 365 Copilot</li><li>Microsoft Copilot Studio</li><li>Make</li><li>Zapier</li><li>ChatGPT</li><li>Claude</li><li>Google Gemini</li><li>NotebookLM</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Buduję własne narzędzia</span><span lang="en">What I build with</span></dt>
+          <dd><ul class="chips"><li><span lang="pl">Python (podstawy: pandas, Streamlit)</span><span lang="en">Python (basics: pandas, Streamlit)</span></li><li>HTML</li><li>CSS</li><li>JavaScript</li><li><span lang="pl">Git i GitHub (w tym GitHub Pages)</span><span lang="en">Git and GitHub (incl. GitHub Pages)</span></li><li>VS Code</li><li><span lang="pl">Claude Code (programowanie z AI)</span><span lang="en">Claude Code (AI-assisted development)</span></li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Warsztaty i mapowanie procesów</span><span lang="en">Workshops and process mapping</span></dt>
+          <dd><ul class="chips"><li>Microsoft Visio</li><li>Lucidchart</li><li>draw.io</li><li>Miro</li><li>Microsoft Forms</li><li>Google Forms</li><li>Mentimeter</li></ul></dd>
         </div>
         <div class="tools-row">
           <dt><span lang="pl">Dokumenty i digitalizacja</span><span lang="en">Documents and digitalisation</span></dt>
-          <dd><ul class="chips"><li>Adobe Acrobat Pro</li><li><span lang="pl">Narzędzia OCR</span><span lang="en">OCR tools</span></li><li>e-Doręczenia</li><li>LibreOffice</li></ul></dd>
+          <dd><ul class="chips"><li>Adobe Acrobat Pro</li><li>Adobe Acrobat Sign</li><li>DocuSign</li><li>DocuWare</li><li>ABBYY FineReader (OCR)</li><li>e-Doręczenia</li></ul></dd>
+        </div>
+        <div class="tools-row">
+          <dt><span lang="pl">Komunikacja i obsługa zgłoszeń</span><span lang="en">Communication and service desk</span></dt>
+          <dd><ul class="chips"><li>Microsoft Teams</li><li>Google Meet</li><li>Slack</li><li>Zoom</li><li>Loom</li><li>ServiceNow</li><li>Zendesk</li><li>Freshdesk</li></ul></dd>
         </div>
         <div class="tools-row">
           <dt><span lang="pl">Grafika i prezentacje</span><span lang="en">Design and presentations</span></dt>
-          <dd><ul class="chips"><li>Canva</li><li>Figma</li><li>Adobe Illustrator</li><li>Adobe InDesign</li><li>Adobe XD</li><li>Picsart</li><li>Prezi</li><li>Infogram</li><li>Piktochart</li><li>Draw.io</li><li>AutoCAD</li></ul></dd>
+          <dd><ul class="chips"><li><span lang="pl">Canva (zaawansowany)</span><span lang="en">Canva (advanced)</span></li><li>Figma</li><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Adobe InDesign</li><li>Prezi</li><li>Infogram</li></ul></dd>
         </div>
         <div class="tools-row">
-          <dt><span lang="pl">Strony i treści online</span><span lang="en">Websites and online content</span></dt>
-          <dd><ul class="chips"><li>WordPress</li><li>Joomla</li><li>Senuto</li><li>Moodle</li><li>Instagram</li><li>Facebook</li></ul></dd>
-        </div>
-        <div class="tools-row">
-          <dt><span lang="pl">Komunikacja</span><span lang="en">Communication</span></dt>
-          <dd><ul class="chips"><li>Teams</li><li>Zoom</li><li>Google Meet</li><li>ClickMeeting</li><li>WhatsApp</li></ul></dd>
+          <dt><span lang="pl">Strony, marketing i e&#8209;learning</span><span lang="en">Websites, marketing and e&#8209;learning</span></dt>
+          <dd><ul class="chips"><li>WordPress</li><li>Webflow</li><li>Meta Business Suite</li><li>Google Analytics 4</li><li>Google Ads</li><li>Google Search Console</li><li>Brand24</li><li>Senuto</li><li>Moodle</li><li>Google Classroom</li></ul></dd>
         </div>
         <div class="tools-row">
           <dt><span lang="pl">Rezerwacje i sprzedaż</span><span lang="en">Bookings and sales</span></dt>
-          <dd><ul class="chips"><li>Booking.com</li><li>Expedia</li><li>Hotelgram</li><li>Versum</li><li>Booksy</li><li>Allegro</li></ul></dd>
+          <dd><ul class="chips"><li>Booking.com for Business</li><li>Expedia</li><li>Hotelgram</li><li>Versum</li><li>Booksy</li><li>Allegro</li><li>Vinted</li></ul></dd>
         </div>
       </dl>
     </section>
@@ -641,8 +653,36 @@
               <li>"What if" planner for prices, discounts and team productivity</li>
             </ul>
             <div class="actions">
-              <!-- LIVE DEMO: add a second button here once the app is on Streamlit Community Cloud -->
+              <!-- Live demo on Streamlit Community Cloud. Two links: each opens the dashboard in the page's language -->
+              <a class="button primary" lang="pl" href="https://rentals-dashboard-v2bnqhnaytsjyehyjdrupz.streamlit.app/?lang=pl"><svg class="icon"><use href="#i-globe"></use></svg>Wypróbuj</a>
+              <a class="button primary" lang="en" href="https://rentals-dashboard-v2bnqhnaytsjyehyjdrupz.streamlit.app/?lang=en"><svg class="icon"><use href="#i-globe"></use></svg>Try it</a>
               <a class="button secondary" href="https://github.com/ladysosenka/rentals-dashboard"><svg class="icon"><use href="#i-code"></use></svg><span lang="pl">Kod na GitHubie</span><span lang="en">Code on GitHub</span></a>
+            </div>
+          </div>
+        </article>
+        <article class="project">
+          <a href="https://ladysosenka.github.io/listing-generator-for-vinted/">
+            <img src="projects/vinted-generator.jpg" width="1120" height="700" loading="lazy"
+                 alt="Listing generator: a step-by-step form on the left and a live preview of the listing on the right">
+          </a>
+          <div class="project-body">
+            <h3><span lang="pl">Generator ogłoszeń na Vinted</span><span lang="en">Listing Generator for Vinted</span></h3>
+            <p class="meta">HTML · CSS · JavaScript · PWA · 2026</p>
+            <p lang="pl">Aplikacja, która w 4 krokach prowadzi przez napisanie rzetelnego ogłoszenia: tytuł, opis, wymiary i hashtagi, gotowe do skopiowania. Najpierw sprawdziłam, co mają wspólnego dobre ogłoszenia, a potem zamieniłam to w prosty formularz.</p>
+            <p lang="en">An app that guides you through writing a clear listing in 4 steps: title, description, measurements and hashtags, ready to copy. I first researched what good listings have in common, then turned it into a simple guided form.</p>
+            <ul lang="pl">
+              <li>Podgląd ogłoszenia na żywo, po polsku i angielsku, z poprawną odmianą polskich słów</li>
+              <li>Pola wymiarów zmieniają się z rodzajem rzeczy: rękawy dla bluz, nogawki dla spodni</li>
+              <li>Działa w przeglądarce i jako aplikacja na telefonie, także offline</li>
+            </ul>
+            <ul lang="en">
+              <li>Live preview in Polish and English, with correct Polish grammar</li>
+              <li>Measurement fields change with the item: sleeves for tops, legs for trousers</li>
+              <li>Works in the browser and as an installable phone app, even offline</li>
+            </ul>
+            <div class="actions">
+              <a class="button primary" href="https://ladysosenka.github.io/listing-generator-for-vinted/"><svg class="icon"><use href="#i-globe"></use></svg><span lang="pl">Wypróbuj</span><span lang="en">Try it</span></a>
+              <a class="button secondary" href="https://github.com/ladysosenka/listing-generator-for-vinted"><svg class="icon"><use href="#i-code"></use></svg><span lang="pl">Kod na GitHubie</span><span lang="en">Code on GitHub</span></a>
             </div>
           </div>
         </article>
@@ -761,7 +801,7 @@
             </ul>
             <ul class="chips">
               <li><span lang="pl">Excel (makra)</span><span lang="en">Excel (macros)</span></li>
-              <li>Power BI</li><li>Workday</li><li>enova</li>
+              <li>Power BI</li><li>Workday</li><li>enova365</li>
             </ul>
           </div>
         </article>
@@ -836,14 +876,14 @@
         <div>
           <p class="subhead"><span lang="pl">Teraz się uczę</span><span lang="en">Learning now</span></p>
           <ul lang="pl" style="margin-top: 12px;">
-            <li>Power BI: raporty i dashboardy</li>
-            <li>Python i analiza danych (pandas, Jupyter)</li>
-            <li>Git i GitHub: ta strona to mój pierwszy projekt</li>
+            <li>DAX i modelowanie danych w Power BI</li>
+            <li>Dane produktowe i przepływ PLM → SAP: jakość danych podstawowych</li>
+            <li>Budowanie narzędzi biznesowych z AI: Python, Streamlit, JavaScript (Claude Code)</li>
           </ul>
           <ul lang="en" style="margin-top: 12px;">
-            <li>Power BI: reports and dashboards</li>
-            <li>Python and data analysis (pandas, Jupyter)</li>
-            <li>Git and GitHub: this website is my first project</li>
+            <li>DAX and data modelling in Power BI</li>
+            <li>Product data and the PLM → SAP flow: master data quality</li>
+            <li>Building business tools with AI: Python, Streamlit, JavaScript (Claude Code)</li>
           </ul>
         </div>
       </div>
@@ -866,8 +906,8 @@
 <section class="closing" id="kontakt">
   <div class="closing-inner">
     <h2><span lang="pl">Porozmawiajmy</span><span lang="en">Let's talk</span></h2>
-    <p lang="pl">Szukam roli w trybie hybrydowym lub zdalnym, w której uporządkuję procesy i pomogę zespołowi działać sprawniej. Mogę zacząć od zaraz i chętnie opowiem więcej o swoich projektach.</p>
-    <p lang="en">I'm looking for a hybrid or remote role where I can organise processes and help a team run more smoothly. I can start right away and I'm happy to tell you more about my projects.</p>
+    <p lang="pl">Szukam roli w trybie hybrydowym lub zdalnym, w której uporządkuję procesy i pomogę zespołowi działać sprawniej. Mogę zacząć w ciągu 2 tygodni i chętnie opowiem więcej o swoich projektach.</p>
+    <p lang="en">I'm looking for a hybrid or remote role where I can organise processes and help a team run more smoothly. I can start within 2 weeks and I'm happy to tell you more about my projects.</p>
     <div class="actions">
       <a class="button primary" href="mailto:moniqasosnowsqa@gmail.com"><svg class="icon"><use href="#i-mail"></use></svg><span lang="pl">Napisz e-mail</span><span lang="en">Send an email</span></a>
       <a class="button secondary" href="https://www.linkedin.com/in/monisosnowska/"><svg class="icon"><use href="#i-linkedin"></use></svg>LinkedIn</a>
@@ -941,6 +981,19 @@
       watcher.observe(section);
     });
   }
+
+  // On phones the sidebar sits above everything, so "How I work" pushed the main content down.
+  // On narrow screens we move that block to just after the About section; on wide screens it goes back.
+  const how = document.querySelector(".how");
+  const howHome = how.parentElement;           // the sidebar
+  const aboutSection = document.getElementById("o-mnie");
+  const narrow = window.matchMedia("(max-width: 860px)");
+  function placeHow() {
+    if (narrow.matches) aboutSection.after(how);
+    else howHome.appendChild(how);
+  }
+  narrow.addEventListener("change", placeHow);
+  placeHow();
 </script>
 </body>
 </html>

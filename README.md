@@ -1,6 +1,6 @@
 # Monika Sosnowska · Portfolio Website
 
-My personal portfolio: a one-page website that presents my experience as an **Operations Coordinator** to recruiters, in **Polish and English**.
+My personal portfolio: a one-page website that presents my experience as an **Operations & Project Coordinator** to recruiters, in **Polish and English**.
 
 **Live site:** [ladysosenka.github.io/portfolio-website](https://ladysosenka.github.io/portfolio-website/) · English version: [?lang=en](https://ladysosenka.github.io/portfolio-website/?lang=en)
 
